@@ -1,1 +1,1 @@
-# password-store
+# simple password record manager using spring for assignment
