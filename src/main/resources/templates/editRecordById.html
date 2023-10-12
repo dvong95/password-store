@@ -1,0 +1,74 @@
+<!--  
+David Vong
+991423258
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Password Store</title>
+		<link rel="stylesheet" th:href="@{/css/index.css}" />
+		<link rel="stylesheet" th:href="@{/css/passwordInput.css}" />
+	</head>
+	<body>
+		<img class="img" alt="logo" th:src="@{/img/logo.jpeg}" />
+		<div class="link-container">
+			<a th:href="@{/}">Add Records</a>
+			<a th:href="@{/viewPasswordRecord}">View Password Records</a>
+			<a th:href="@{/searchPasswordRecord}">Search Password Records</a>
+		</div>
+		<div class="form-container">
+			<form id="form" action="#" method="POST" th:action="@{/updatePassword}" th:object="${record}">
+				<table>
+					<tr>
+						<th colspan="2">Password Store</th>
+					</tr>
+					<tr>
+						<td><label for="id">ID: </label></td>
+						<td><input id="id" type="text" th:field="*{id}" readonly /></td>
+					</tr>
+					<tr>
+						<td><label for="title">Title: </label></td>
+						<td><input id="title" type="text" th:field="*{title}" /></td>
+					</tr>
+					<tr>
+						<td><label for="username">Username: </label></td>
+						<td><input id="username" type="text" th:field="*{username}" /></td>
+					</tr>
+					<tr>
+						<td><label for="password"><span class="required">*</span>Password: </label></td>
+						<td><input id="password" class="input-password edit-only hidden" type="text" th:field="*{password}" /></td>
+						<td>
+							<input class="cb-password" type="checkbox" />
+							<span class="password-text">Show Password</span>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="reenterpassword"><span class="required">*</span>Re-Enter Password: </label></td>
+						<!-- Password viewable in dev tools, but just trying to make it work for project -->
+						<td><input id="reenterpassword" class="input-password" type="password" th:value="${record.password}" /></td>
+						<td><span class="message hidden">Password does not match!</span></td>
+					</tr>
+					<tr>
+						<td><label for="url">URL: </label></td>
+						<td><input id="url" type="url" th:field="*{url}" /></td>
+					</tr>
+					<tr>
+						<td><label for="email">Email: </label></td>
+						<td><input id="email" type="email" th:field="*{email}" /></td>
+					</tr>
+					<tr>
+						<td><label for="note">Note: </label></td>
+	 					<td><textarea id="note" rows="3" th:field="*{notes}"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input id="submitButton" class="button-4" type="submit" value="Update Password"  /></td>
+					</tr>
+	 				<tr th:if="${isUpdated}">
+						<td colspan="2" th:text="${isUpdated}"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<script type="module" th:src="@{/js/pages/index.js}"></script>	
+	</body>
+</html>
